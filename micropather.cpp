@@ -507,9 +507,9 @@ void MicroPather::Reset()
 }
 
 
-void MicroPather::GoalReached( PathNode* node, void* start, void* end, MP_VECTOR< void* > *_path )
+void MicroPather::GoalReached( PathNode* node, void* start, void* end, std::vector< void* > *_path )
 {
-	MP_VECTOR< void* >& path = *_path;
+	std::vector< void* >& path = *_path;
 	path.clear();
 
 	// We have reached the goal.
@@ -592,7 +592,7 @@ void MicroPather::GoalReached( PathNode* node, void* start, void* end, MP_VECTOR
 }
 
 
-void MicroPather::GetNodeNeighbors( PathNode* node, MP_VECTOR< NodeCost >* pNodeCost )
+void MicroPather::GetNodeNeighbors( PathNode* node, std::vector< NodeCost >* pNodeCost )
 {
 	if ( node->numAdjacent == 0 ) {
 		// it has no neighbors.
@@ -679,14 +679,14 @@ void MicroPather::DumpStats()
 #endif
 
 
-void MicroPather::StatesInPool( MP_VECTOR< void* >* stateVec )
+void MicroPather::StatesInPool( std::vector< void* >* stateVec )
 {
  	stateVec->clear();
 	pathNodePool.AllStates( frame, stateVec );
 }
 
 
-void PathNodePool::AllStates( unsigned frame, MP_VECTOR< void* >* stateVec )
+void PathNodePool::AllStates( unsigned frame, std::vector< void* >* stateVec )
 {	
     for ( Block* b=blocks; b; b=b->nextBlock )
     {
@@ -727,7 +727,7 @@ void PathCache::Reset()
 }
 
 
-void PathCache::Add( const MP_VECTOR< void* >& path, const MP_VECTOR< float >& cost )
+void PathCache::Add( const std::vector< void* >& path, const std::vector< float >& cost )
 {
 	if ( nItems + (int)path.size() > allocated*3/4 ) {
 		return;
@@ -760,7 +760,7 @@ void PathCache::AddNoSolution( void* end, void* states[], int count )
 }
 
 
-int PathCache::Solve( void* start, void* end, MP_VECTOR< void* >* path, float* totalCost )
+int PathCache::Solve( void* start, void* end, std::vector< void* >* path, float* totalCost )
 {
 	const Item* item = Find( start, end );
 	if ( item ) {
@@ -852,7 +852,7 @@ void MicroPather::GetCacheData( CacheData* data )
 
 
 
-int MicroPather::Solve( void* startNode, void* endNode, MP_VECTOR< void* >* path, float* cost )
+int MicroPather::Solve( void* startNode, void* endNode, std::vector< void* >* path, float* cost )
 {
 	// Important to clear() in case the caller doesn't check the return code. There
 	// can easily be a left over path  from a previous call.
@@ -969,7 +969,7 @@ int MicroPather::Solve( void* startNode, void* endNode, MP_VECTOR< void* >* path
 }	
 
 
-int MicroPather::SolveForNearStates( void* startState, MP_VECTOR< StateCost >* near, float maxCost )
+int MicroPather::SolveForNearStates( void* startState, std::vector< StateCost >* near, float maxCost )
 {
 	/*	 http://en.wikipedia.org/wiki/Dijkstra%27s_algorithm
 
