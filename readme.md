@@ -12,24 +12,6 @@ The goals of MicroPather are:
 * Easy to use and simple interface
 * Fast enough
 
-Demo
-----
-
-MicroPather comes with a demo application - dungeon.cpp - to show off pathing. 
-It's ASCII art dungeon exploring at its finest.
-
-The demo shows an ASCII art dungeon. You can move around by typing a new location, and it will 
-print the path to that location. In the screen shot above, the path starts in 
-the upper left corner, and steps to the 'i' at about the middle of 
-the screen avoiding ASCII walls on the way. The numbers show the path from 0 
-to 9 then back to 0.
-
-You can even open and close the doors to change possible paths. 'd' at the command prompt.
-
-A Windows Visual C++ 2010 project file and a Linux Makefile are provided. Building it 
-for another environment is trivial: just compile dungeon.cpp, micropather.h, and 
-micropather.cpp to a command line app in your environment.
-
 About A*
 --------
 In video games, the pathfinding problem comes up in many modern games. What 
